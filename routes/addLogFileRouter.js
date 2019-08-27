@@ -14,13 +14,16 @@ router.post('/', async function(request, response){
     addLogController.addLog(request.fields, request.files.file);
   
     return response.send({
-      "ok": 1,
+      "code": 1,
       "time": Date.now()
     })
 
   } catch (error) {
     
-    return response.send({error});
+    return response.send({
+      "error": Const.httpCodeServerError,
+      "time": Date.now()
+    })
   }
 })
 

@@ -17,12 +17,12 @@ router.post('/', async function(request, response){
     addLogMessageController.addLogMessage(message, folderName, fileName);
     
     return response.send({
-      "ok": 1,
+      "code": 1,
       "time": Date.now()
     })
   } catch (error) {
     return response.send({
-      error,
+      "error": Const.httpCodeServerError,
       "time": Date.now()
     })
   }
