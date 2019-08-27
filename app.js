@@ -3,10 +3,20 @@ let app = express();
 let path = require('path');
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
-
-var config = require('./_config');
+const formidableMiddleware = require('express-formidable');
+var fs = require('fs-extra');
 
 let routes = require('./routes');
+
+if(!fs.existsSync(path.join(__dirname, 'Logs'))) {
+      
+  fs.mkdirSync(path.join(__dirname, 'Logs'));
+  
+}
+
+app.use(formidableMiddleware({
+  uploadDir: path.join(__dirname, 'Logs')
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
