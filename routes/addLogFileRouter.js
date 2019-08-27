@@ -6,12 +6,12 @@ let Const = require('../lib/consts')
 router.post('/', async function(request, response){
 
   if (!request.fields.folderName) return response.send({ 
-    "error" : Const.responsecodeNoFolderName,
+    "code" : Const.responsecodeNoFolderName,
     "time": Date.now()
   });
 
   if (!request.files.file) return response.send({ 
-    "error" : Const.responsecodeNoFile,
+    "code" : Const.responsecodeNoFile,
     "time": Date.now()
   });
 
@@ -20,14 +20,14 @@ router.post('/', async function(request, response){
     addLogController.addLog(request.fields, request.files.file);
   
     return response.send({
-      "code": 1,
+      "code": Const.responsecodeSucceed,
       "time": Date.now()
     })
 
   } catch (error) {
     
     return response.send({
-      "error": Const.httpCodeServerError,
+      "code": Const.httpCodeServerError,
       "time": Date.now()
     })
   }

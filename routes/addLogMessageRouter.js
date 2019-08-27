@@ -8,17 +8,17 @@ router.post('/', async function(request, response){
   let {message, folderName, fileName} = request.fields
 
   if (!message) return response.send({ 
-    "error" : Const.responsecodeNoMessage,
+    "code" : Const.responsecodeNoMessage,
     "time": Date.now()
   });
 
   if (!folderName) return response.send({ 
-    "error" : Const.responsecodeNoFolderName,
+    "code" : Const.responsecodeNoFolderName,
     "time": Date.now()
   });
 
   if (!fileName) return response.send({ 
-    "error" : Const.responsecodeNoFileName,
+    "code" : Const.responsecodeNoFileName,
     "time": Date.now()
   });
 
@@ -26,12 +26,12 @@ router.post('/', async function(request, response){
     addLogMessageController.addLogMessage(message, folderName, fileName);
     
     return response.send({
-      "code": 1,
+      "code": Const.responsecodeSucceed,
       "time": Date.now()
     })
   } catch (error) {
     return response.send({
-      "error": Const.httpCodeServerError,
+      "code": Const.httpCodeServerError,
       "time": Date.now()
     })
   }
