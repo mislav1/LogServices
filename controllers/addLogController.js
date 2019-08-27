@@ -1,12 +1,13 @@
 var fs = require('fs-extra');
 var path = require('path');
+let Const = require('../lib/consts')
 
 let addLogController = {};
 
 addLogController.addLog = async function(fields, file){
   try {
 
-    const logsPath = path.join(__dirname, '../', 'Logs')
+    const logsPath = Const.logPath;
 
     if(!fs.existsSync(path.join(logsPath, fields.folderName))) {
       
