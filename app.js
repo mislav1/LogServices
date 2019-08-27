@@ -4,6 +4,7 @@ let path = require('path');
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
 const formidableMiddleware = require('express-formidable');
+const serveIndex = require('serve-index');
 var fs = require('fs-extra');
 
 let routes = require('./routes');
@@ -13,6 +14,11 @@ if(!fs.existsSync(path.join(__dirname, 'Logs'))) {
   fs.mkdirSync(path.join(__dirname, 'Logs'));
   
 }
+app.use('/logs', express.static(__dirname + '/Logs'));
+app.use('/logs', serveIndex(__dirname + '/Logs', {
+    view: "details",
+    icons: true
+}));
 
 app.use(formidableMiddleware({
   uploadDir: path.join(__dirname, 'Logs')
