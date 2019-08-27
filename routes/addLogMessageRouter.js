@@ -7,11 +7,20 @@ router.post('/', async function(request, response){
   
   let {message, folderName, fileName} = request.fields
 
-  if (!message) return response.send({ "errorCode" : Const.responsecodeNoMessage });
+  if (!message) return response.send({ 
+    "error" : Const.responsecodeNoMessage,
+    "time": Date.now()
+  });
 
-  if (!folderName) return response.send({ "errorCode" : Const.responsecodeNoFolderName });
+  if (!folderName) return response.send({ 
+    "error" : Const.responsecodeNoFolderName,
+    "time": Date.now()
+  });
 
-  if (!fileName) return response.send({ "errorCode" : Const.responsecodeNoFileName });
+  if (!fileName) return response.send({ 
+    "error" : Const.responsecodeNoFileName,
+    "time": Date.now()
+  });
 
   try {
     addLogMessageController.addLogMessage(message, folderName, fileName);

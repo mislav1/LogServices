@@ -5,9 +5,15 @@ let Const = require('../lib/consts')
 
 router.post('/', async function(request, response){
 
-  if (!request.fields.folderName) return response.send({ "errorCode" : Const.responsecodeNoFolderName });
+  if (!request.fields.folderName) return response.send({ 
+    "error" : Const.responsecodeNoFolderName,
+    "time": Date.now()
+  });
 
-  if (!request.files.file) return response.send({ "errorCode" : Const.responsecodeNoFile });
+  if (!request.files.file) return response.send({ 
+    "error" : Const.responsecodeNoFile,
+    "time": Date.now()
+  });
 
   try {
     
