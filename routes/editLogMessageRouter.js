@@ -1,10 +1,10 @@
 let express = require('express');
 let router = express.Router();
-let addLogMessageController = require('../controllers/addLogMessageController');
 let Const = require('../lib/consts')
 
+let editLogMessageController = require('../controllers/editLogMessageController');
+
 router.post('/', async function(request, response){
-  
   let {message, folderName, fileName} = request.fields
 
   if (!message) return response.send({ 
@@ -23,12 +23,14 @@ router.post('/', async function(request, response){
   });
 
   try {
-    addLogMessageController.addLogMessage(message, folderName, fileName);
+    
+    editLogMessageController.editLogMessage(message, folderName, fileName);
     
     return response.send({
       "code": Const.responsecodeSucceed,
       "time": Date.now()
     })
+
   } catch (error) {
     console.log(error);
     return response.send({
@@ -37,5 +39,6 @@ router.post('/', async function(request, response){
     })
   }
 })
+
 
 module.exports = router;

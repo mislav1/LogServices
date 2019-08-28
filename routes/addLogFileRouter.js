@@ -25,7 +25,7 @@ router.post('/', async function(request, response){
     })
 
   } catch (error) {
-    
+    console.log(error);
     return response.send({
       "code": Const.httpCodeServerError,
       "time": Date.now()
