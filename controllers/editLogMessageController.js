@@ -20,7 +20,9 @@ editLogMessageController.editLogMessage = async function(message, folderName, lo
         }
       })
     } else {
-      fs.appendFileSync(path.join(logsPath, folderName, logName), '\r\n' + message);
+      if(message){
+        fs.appendFileSync(path.join(logsPath, folderName, logName), '\r\n' + message);
+      }
     }
 
   } catch (error) {

@@ -7,7 +7,7 @@ let editLogMessageController = require('../controllers/editLogMessageController'
 router.post('/', async function(request, response){
   let {message, folderName, fileName} = request.fields
 
-  if (!message) return response.send({ 
+  if (message === undefined) return response.send({ 
     "code" : Const.responsecodeNoMessage,
     "time": Date.now()
   });
